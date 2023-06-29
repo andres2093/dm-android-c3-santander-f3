@@ -70,7 +70,7 @@ class PhoneActivity : Activity() {
 
                     val code = binding.edtCode.text.toString()
 
-                    verifyPhoneNumberWithCode("verificationId", code)
+                    storedVerificationId?.let { it1 -> verifyPhoneNumberWithCode(it1, code) }
                 }
             }
         }
