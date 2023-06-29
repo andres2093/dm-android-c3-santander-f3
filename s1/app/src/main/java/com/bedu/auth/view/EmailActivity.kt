@@ -4,20 +4,32 @@ import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
+import com.bedu.auth.R
 import com.bedu.auth.databinding.ActivityEmailBinding
+import com.bedu.auth.utils.Utility
 import com.bedu.auth.utils.Utility.hideKeyboard
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import java.lang.Exception
 
 class EmailActivity : Activity() {
 
     private lateinit var binding: ActivityEmailBinding
+
+    private lateinit var auth: FirebaseAuth
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEmailBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        auth = Firebase.auth
 
         handleClick()
     }
@@ -65,21 +77,34 @@ class EmailActivity : Activity() {
     }
 
     private fun createAccount(email: String, password: String) {
-        updateUI()
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this){ task ->
+                if (task.isSuccessful){
+                    Log.d(TAG, "createAccount: success")
+                    val user = auth.currentUser
+                    updateUI(user, null)
+                } else {
+                    Log.w(TAG, "createAccount: failure", task.exception)
+                    updateUI(null, task.exception)
+                }
+            }
     }
 
     private fun signIn(email: String, password: String) {
-        updateUI()
+//        updateUI()
     }
 
     private fun sendEmailVerification() {
     }
 
-    private fun updateUI() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.loading.visibility = View.GONE
-            binding.btnLogin.visibility = View.VISIBLE
-        }, 2000)
+    private fun updateUI(user: FirebaseUser?, exception: Exception?) {
+        if (exception != null) {
+            Utility.displaySnackBar(binding.root, exception.message.toString(), this, R.color.red)
+        } else {
+            Utility.displaySnackBar(binding.root,"Login success!!!", this, R.color.green)
+        }
+        binding.loading.visibility = View.GONE
+        binding.btnLogin.visibility = View.VISIBLE
     }
 
     private fun reload() {
