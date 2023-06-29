@@ -91,7 +91,17 @@ class EmailActivity : Activity() {
     }
 
     private fun signIn(email: String, password: String) {
-//        updateUI()
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this){ task ->
+                if (task.isSuccessful){
+                    Log.d(TAG, "signIn: success")
+                    val user = auth.currentUser
+                    updateUI(user, null)
+                } else {
+                    Log.w(TAG, "signIn: failure", task.exception)
+                    task.exception?.let { updateUI(null, it) }
+                }
+            }
     }
 
     private fun sendEmailVerification() {
