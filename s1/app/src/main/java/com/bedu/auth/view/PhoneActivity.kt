@@ -192,14 +192,23 @@ class PhoneActivity : Activity() {
     }
 
     private fun verifyPhoneNumberWithCode(verificationId: String, code: String) {
-//        updateUI()
+        val credential = PhoneAuthProvider.getCredential(verificationId, code)
+        signInWithPhoneAuthCredential(credential)
     }
 
     private fun resendVerificationCode(
         phoneNumber: String,
-        token: PhoneAuthProvider.ForceResendingToken
+        token: PhoneAuthProvider.ForceResendingToken?
     ) {
-//        updateUI()
+        val optionsBuilder = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber(phoneNumber)       // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(this)                 // Activity (for callback binding)
+            .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
+        if (token != null) {
+            optionsBuilder.setForceResendingToken(token) // callback's ForceResendingToken
+        }
+        PhoneAuthProvider.verifyPhoneNumber(optionsBuilder.build())
     }
     // [END resend_verification]
 
