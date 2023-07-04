@@ -3,6 +3,7 @@ package com.bedu.auth.view
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import com.bedu.auth.databinding.ActivityOptionsBinding
 import com.google.firebase.FirebaseApp
 
@@ -37,6 +38,10 @@ class MainActivity : Activity() {
             startActivity(intent)
         }
         binding.btnGoogle.setOnClickListener {
+        }
+        binding.btnCrash.setOnClickListener {
+            Toast.makeText(this, "Crash!", Toast.LENGTH_SHORT).show()
+            throw RuntimeException("Test Crash") // Force a crash
         }
     }
 
