@@ -3,11 +3,13 @@ package com.bedu.auth.view
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.bedu.auth.databinding.ActivityOptionsBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.CustomKeysAndValues
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import java.lang.Exception
 
 class MainActivity : Activity() {
 
@@ -63,6 +65,12 @@ class MainActivity : Activity() {
             FirebaseCrashlytics.getInstance().log("Higgs-Boson detected! Bailing out")
 
             FirebaseCrashlytics.getInstance().setUserId("123")
+
+            try {
+                Log.e(TAG, "handleClick: " + 0 / 0)
+            } catch (e: Exception){
+                FirebaseCrashlytics.getInstance().recordException(e)
+            }
 
 //            throw RuntimeException("Test Crash") // Force a crash
         }
