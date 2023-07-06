@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bedu.hilt.databinding.ActivityMainBinding
 import com.bedu.hilt.ui.people.view.PeopleActivity
+import com.bedu.hilt.ui.planets.view.PlanetsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.btnPlanets.setOnClickListener {
+            val intent = Intent(this, PlanetsActivity::class.java)
+            startActivity(intent)
         }
     }
 }

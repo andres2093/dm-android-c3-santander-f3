@@ -24,6 +24,7 @@
         </activity>
 
         <activity android:name=".ui.people.view.PeopleActivity" />
+        <activity android:name=".ui.planets.view.PlanetsActivity" />
     </application>
 
 </manifest>
