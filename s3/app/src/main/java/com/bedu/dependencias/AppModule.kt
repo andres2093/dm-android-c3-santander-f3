@@ -15,4 +15,9 @@ object AppModule {
     @Provides
     @Named("String1")
     fun provideTestString1() = "Texto inyectado"
+
+    @Singleton
+    @Provides
+    @Named("randomNum")
+    fun provideRandomNum() = (0..100).random().toString()
 }

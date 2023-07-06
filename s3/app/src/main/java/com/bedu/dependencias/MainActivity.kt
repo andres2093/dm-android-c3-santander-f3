@@ -1,8 +1,10 @@
 package com.bedu.dependencias
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -19,12 +21,30 @@ class MainActivity : AppCompatActivity() {
     @Named("String2")
     lateinit var testString2: String
 
+    @Inject
+    @Named("randomNum")
+    lateinit var randomNum: String
+
+    @Inject
+    @Named("randomNumAct")
+    lateinit var randomNumAct: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
 
-        Log.e("TAG", "onCreate: $testString")
-        Log.e("TAG", "onCreate: $testString2")
+        findViewById<Button>(R.id.btn_other).setOnClickListener {
+            startActivity(Intent(this, OtherActivity::class.java))
+            finish()
+        }
+
+        Log.e("MainActivity", testString)
+        Log.e("MainActivity", testString2)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("MainActivity", randomNum)
+        Log.e("MainActivityAct", randomNumAct)
     }
 }
