@@ -13,9 +13,15 @@ import com.bedu.hilt.ui.planets.adapter.PlanetsAdapter
 import com.bedu.hilt.utils.Status
 import com.bedu.hilt.ui.planets.viewmodel.PlanetsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Named
 
 @AndroidEntryPoint
 class PlanetsActivity : AppCompatActivity() {
+
+    @Inject
+    @Named("provideImage")
+    lateinit var provideImage: String
 
     private lateinit var binding: ActivityRecyclerBinding
 
@@ -35,7 +41,7 @@ class PlanetsActivity : AppCompatActivity() {
 
     private fun setupUI() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = PlanetsAdapter(arrayListOf())
+        adapter = PlanetsAdapter(arrayListOf(), provideImage)
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(
                 binding.recyclerView.context,

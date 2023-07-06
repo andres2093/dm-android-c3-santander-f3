@@ -13,5 +13,7 @@ data class People(
     @Json(name = "hair_color")
     val hairColor: String = "",
     @Json(name = "avatar")
-    val avatar: String = ""
+    val avatar: String = "",
+    @Json(name = "population")
+    val population: String = ""
 )

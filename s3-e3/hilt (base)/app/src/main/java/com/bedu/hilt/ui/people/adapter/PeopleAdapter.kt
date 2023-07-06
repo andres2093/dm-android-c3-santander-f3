@@ -11,17 +11,18 @@ import com.bumptech.glide.Glide
 
 class PeopleAdapter(
     private val people: ArrayList<People>,
+    private val imagePath: String
 ) : RecyclerView.Adapter<PeopleAdapter.DataViewHolder>() {
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(model: People) {
+        fun bind(model: People, imagePath: String) {
 
             val binding = ItemLayoutBinding.bind(itemView)
 
             binding.textViewUserName.text = model.name
-            binding.textViewUserEmail.text = model.gender
+            binding.textViewUserEmail.text = model.population
             Glide.with(binding.imageViewAvatar.context)
-                .load("")
+                .load(imagePath)
                 .into(binding.imageViewAvatar)
         }
     }
@@ -37,7 +38,7 @@ class PeopleAdapter(
     override fun getItemCount(): Int = people.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
-        holder.bind(people[position])
+        holder.bind(people[position], imagePath)
 
     fun addData(list: List<People>) {
         people.clear()

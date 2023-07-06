@@ -11,17 +11,17 @@ import com.bumptech.glide.Glide
 
 class PlanetsAdapter(
     private val planets: ArrayList<People>,
+    private val imagePath: String
 ) : RecyclerView.Adapter<PlanetsAdapter.DataViewHolder>() {
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(model: People) {
-
+        fun bind(model: People, imagePath: String) {
             val binding = ItemLayoutBinding.bind(itemView)
 
             binding.textViewUserName.text = model.name
             binding.textViewUserEmail.text = model.gender
             Glide.with(binding.imageViewAvatar.context)
-                .load("")
+                .load(imagePath)
                 .into(binding.imageViewAvatar)
         }
     }
@@ -37,7 +37,7 @@ class PlanetsAdapter(
     override fun getItemCount(): Int = planets.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
-        holder.bind(planets[position])
+        holder.bind(planets[position], imagePath)
 
     fun addData(list: List<People>) {
         planets.clear()

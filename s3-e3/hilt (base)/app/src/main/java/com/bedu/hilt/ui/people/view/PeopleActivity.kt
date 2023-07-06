@@ -13,9 +13,15 @@ import com.bedu.hilt.ui.people.adapter.PeopleAdapter
 import com.bedu.hilt.utils.Status
 import com.bedu.hilt.ui.people.viewmodel.PeopleViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Named
 
 @AndroidEntryPoint
 class PeopleActivity : AppCompatActivity() {
+
+    @Inject
+    @Named("provideImage")
+    lateinit var provideImage: String
 
     private lateinit var binding: ActivityRecyclerBinding
 
@@ -35,7 +41,7 @@ class PeopleActivity : AppCompatActivity() {
 
     private fun setupUI() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = PeopleAdapter(arrayListOf())
+        adapter = PeopleAdapter(arrayListOf(), provideImage)
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(
                 binding.recyclerView.context,
