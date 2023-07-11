@@ -17,9 +17,10 @@ class FlowStepFragment : Fragment() {
     ): View? {
         setHasOptionsMenu(true)
 
-        val flowStepNumber = arguments?.getInt("flowStepNumber")
+//        val flowStepNumber = arguments?.getInt("flowStepNumber")
+        val safeArgs: FlowStepFragmentArgs by navArgs()
 
-        return when (flowStepNumber) {
+        return when (safeArgs.flowStepNumber) {
             2 -> inflater.inflate(R.layout.flow_step_two_fragment, container, false)
             else -> inflater.inflate(R.layout.flow_step_one_fragment, container, false)
         }
