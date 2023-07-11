@@ -45,5 +45,10 @@
         android:name="com.bedu.navigation.DeepLinkFragment"
         android:label="@string/deeplink"
         tools:layout="@layout/deeplink_fragment"/>
+    <fragment
+        android:id="@+id/settings_dest"
+        android:name="com.bedu.navigation.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" />
 
 </navigation>
