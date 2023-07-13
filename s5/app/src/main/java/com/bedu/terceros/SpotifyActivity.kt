@@ -10,6 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bedu.terceros.SpotifyActivity.AuthParams.CLIENT_ID
 import com.bedu.terceros.SpotifyActivity.AuthParams.REDIRECT_URI
+import com.bedu.terceros.SpotifyActivity.SpotifySampleContexts.ALBUM_URI
+import com.bedu.terceros.SpotifyActivity.SpotifySampleContexts.ARTIST_URI
+import com.bedu.terceros.SpotifyActivity.SpotifySampleContexts.PLAYLIST_URI
+import com.bedu.terceros.SpotifyActivity.SpotifySampleContexts.PODCAST_URI
+import com.bedu.terceros.SpotifyActivity.SpotifySampleContexts.TRACK_URI
 import com.bedu.terceros.databinding.ActivitySpotifyBinding
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
@@ -389,6 +394,45 @@ class SpotifyActivity : AppCompatActivity() {
             .playerApi
             .skipNext()
             .setResultCallback { logMessage(getString(R.string.command_feedback, "skip next")) }
+            .setErrorCallback(errorCallback)
+    }
+
+    object SpotifySampleContexts {
+        const val TRACK_URI = "spotify:track:2Foc5Q5nqNiosCNqttzHof"
+        const val ALBUM_URI = "spotify:album:50oWFJ0mDEeMa74ElsdAp3"
+        const val ARTIST_URI = "spotify:artist:3WrFJ7ztbogyGnTHbHJFl2"
+        const val PLAYLIST_URI = "spotify:playlist:7k4tBESqMxHmpX2sjt601W"
+        const val PODCAST_URI = "spotify:show:5pMNIoy0SoxMBiWZ1qtk4h"
+    }
+
+//    https://open.spotify.com/playlist/7k4tBESqMxHmpX2sjt601W?si=d5d16d0f9c924691
+//    https://open.spotify.com/track/5rurggqwwudn9clMdcchxT?si=7372c0513a4d4192
+
+    fun onPlayPodcastButtonClicked(notUsed: View) {
+        playUri(PODCAST_URI)
+    }
+
+    fun onPlayTrackButtonClicked(notUsed: View) {
+        playUri(TRACK_URI)
+    }
+
+    fun onPlayAlbumButtonClicked(notUsed: View) {
+        playUri(ALBUM_URI)
+    }
+
+    fun onPlayArtistButtonClicked(notUsed: View) {
+        playUri(ARTIST_URI)
+    }
+
+    fun onPlayPlaylistButtonClicked(notUsed: View) {
+        playUri(PLAYLIST_URI)
+    }
+
+    private fun playUri(uri: String) {
+        assertAppRemoteConnected()
+            .playerApi
+            .play(uri)
+            .setResultCallback { logMessage(getString(R.string.command_feedback, "play")) }
             .setErrorCallback(errorCallback)
     }
 
