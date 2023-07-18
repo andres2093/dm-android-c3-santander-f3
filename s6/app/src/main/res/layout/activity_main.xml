@@ -46,4 +46,17 @@
         app:layout_constraintTop_toBottomOf="@+id/btnPeople"
         app:layout_constraintVertical_bias="0.06" />
 
+    <Button
+        android:id="@+id/btnDownload"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:text="Download app"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlanets"
+        app:layout_constraintVertical_bias="0.06" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

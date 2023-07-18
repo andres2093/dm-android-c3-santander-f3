@@ -6,6 +6,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/home/andres/Documentos/Android/DebugKey/debug.keystore')
+            storePassword 'android'
+            keyAlias 'android'
+            keyPassword 'android'
+        }
+    }
     namespace 'com.bedu.hilt'
     compileSdk 33
 
