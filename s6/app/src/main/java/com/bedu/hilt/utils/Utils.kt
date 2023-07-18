@@ -1,5 +1,7 @@
 package com.bedu.hilt.utils
 
+import android.content.Context
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 
@@ -14,4 +16,12 @@ fun AppCompatActivity.requestPermissionsCompat(
     requestCode: Int
 ) {
     ActivityCompat.requestPermissions(this, permissionsArray, requestCode)
+}
+
+fun buildAlertDialog(context: Context, resTitle: Int, resMessage: Int): AlertDialog {
+    val alertDialog = AlertDialog.Builder(context).create()
+    alertDialog.setTitle(context.getString(resTitle))
+    alertDialog.setMessage(context.getString(resMessage))
+    alertDialog.setCancelable(false)
+    return alertDialog
 }
