@@ -1,8 +1,10 @@
 package com.bedu.librerias
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bedu.librerias.databinding.ActivityToastyBinding
+import es.dmoral.toasty.Toasty
 
 class ToastyActivity : AppCompatActivity() {
 
@@ -14,5 +16,12 @@ class ToastyActivity : AppCompatActivity() {
         binding = ActivityToastyBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        binding.btnError.setOnClickListener {
+            Toasty.error(this, "This is an error toast!", Toast.LENGTH_SHORT, true).show()
+        }
+        binding.btnSuccess.setOnClickListener {
+            Toasty.success(this, "Success!", Toast.LENGTH_SHORT, true).show()
+        }
     }
 }
