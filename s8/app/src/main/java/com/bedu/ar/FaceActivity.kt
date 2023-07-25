@@ -73,6 +73,23 @@ class FaceActivity : AppCompatActivity(), GLSurfaceView.Renderer {
         surfaceView.setWillNotDraw(false)
         installRequested = false
 
+        binding.btnFox.setOnClickListener {
+            earFur = "models/fox/ear_fur.png"
+            freckles = "models/fox/freckles.png"
+            noseFur = "models/fox/nose_fur.png"
+
+            surfaceView.onPause()
+            surfaceView.onResume()
+        }
+        binding.btnPig.setOnClickListener {
+            earFur = "models/pig/ear_fur.png"
+            freckles = "models/pig/freckles.png"
+            noseFur = "models/pig/nose_fur.png"
+
+            surfaceView.onPause()
+            surfaceView.onResume()
+        }
+
     }
 
     override fun onDestroy() {
@@ -108,7 +125,7 @@ class FaceActivity : AppCompatActivity(), GLSurfaceView.Renderer {
                 )
                 )
                 val cameraConfigFilter = CameraConfigFilter(session)
-                cameraConfigFilter.facingDirection = CameraConfig.FacingDirection.FRONT
+                cameraConfigFilter.facingDirection = CameraConfig.FacingDirection.BACK
                 val cameraConfigs = session!!.getSupportedCameraConfigs(cameraConfigFilter)
                 if (cameraConfigs.isNotEmpty()) {
                     session!!.cameraConfig = cameraConfigs[0]
