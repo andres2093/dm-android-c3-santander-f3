@@ -22,7 +22,11 @@ class ModelActivity : AppCompatActivity() {
     private var arFragment: ArFragment? = null
     private var modelRenderable: ModelRenderable? = null
 
-    private val modelUrl = "https://github.com/beduExpert/Android-Avanzado-2021/raw/main/Sesion-08/Reto-02/models/Chair.glb"
+//    private val modelUrl = "https://github.com/beduExpert/Android-Avanzado-2021/raw/main/Sesion-08/Reto-02/models/Chair.glb"
+//    private val modelUrl = "https://github.com/beduExpert/Android-Avanzado-2021/raw/main/Sesion-08/Reto-02/models/Astronaut.glb"
+//    private val modelUrl = "https://github.com/beduExpert/Android-Avanzado-2021/raw/main/Sesion-08/Reto-02/models/Mixer.glb"
+//    private val modelUrl = "https://github.com/beduExpert/Android-Avanzado-2021/raw/main/Sesion-08/Reto-02/models/RobotExpressive.glb"
+    private val modelUrl = "https://github.com/beduExpert/Android-Avanzado-2021/raw/main/Sesion-08/Reto-02/models/GeoPlanter.glb"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
