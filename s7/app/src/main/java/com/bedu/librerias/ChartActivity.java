@@ -115,8 +115,12 @@ public class ChartActivity extends AppCompatActivity {
             entries.add(new BarEntry(i, (int) (Math.random() * 70) + 30));
         }
 
+//        entries.add(new BarEntry(1, 2));
+//        entries.add(new BarEntry(2, 3));
+//        entries.add(new BarEntry(3, 4));
+
         BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
-        d.setColors(ColorTemplate.MATERIAL_COLORS);
+        d.setColors(ColorTemplate.COLORFUL_COLORS);
         d.setHighLightAlpha(255);
         d.setValueTextColor(resTextColor);
 

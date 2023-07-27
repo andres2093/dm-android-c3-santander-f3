@@ -6,11 +6,17 @@ import android.graphics.Typeface
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import com.bedu.librerias.R
+import com.bedu.librerias.utils.SUCCESS
+import com.bedu.librerias.utils.showToasty
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.ChartData
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 
 abstract class BarChartItem(cd: ChartData<*>?, c: Context) : ChartItem(cd!!) {
 
@@ -31,6 +37,21 @@ abstract class BarChartItem(cd: ChartData<*>?, c: Context) : ChartItem(cd!!) {
         } else {
             holder = convertView.tag as ViewHolder
         }
+
+        holder.chart?.setOnChartValueSelectedListener(object : OnChartValueSelectedListener{
+            override fun onValueSelected(e: Entry?, h: Highlight?) {
+                if (c != null) {
+                    if (e != null) {
+                        showToasty(c, SUCCESS, e.x.toString() + "," + e.y, Toast.LENGTH_SHORT, true, null, null)
+                    }
+                }
+            }
+
+            override fun onNothingSelected() {
+
+            }
+
+        })
 
         holder.chart!!.description.isEnabled = false
         holder.chart!!.setDrawGridBackground(false)
